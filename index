@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="refresh" content="300">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Kindle Dashboard</title>
+<style>
+  html, body { margin: 0; padding: 0; background: #ffffff; color: #000000; font-family: Futura, "Century Gothic", "Trebuchet MS", Helvetica, Arial, sans-serif; }
+  body { position: relative; width: 800px; height: 600px; overflow: hidden; }
+  .wrap { padding: 14px 16px 0 16px; }
+
+  /* TOP STRIP: time + date */
+  .top { height: 28px; border-bottom: 2px solid #000; overflow: hidden; }
+  .top .t { float: left; font-size: 20px; font-weight: bold; letter-spacing: 1px; line-height: 24px; }
+  .top .t small { font-size: 11px; letter-spacing: 2px; margin-left: 4px; }
+  .top .d { float: right; font-size: 11px; letter-spacing: 4px; text-transform: uppercase; line-height: 24px; }
+
+  /* COLUMNS */
+  .cols { margin-top: 14px; overflow: hidden; }
+  .col { float: left; margin-right: 12px; }
+  .c1 { width: 240px; }
+  .c2 { width: 252px; }
+  .c3 { width: 252px; margin-right: 0; }
+
+  .h { font-family: "Courier New", Courier, monospace; font-size: 12px; font-weight: bold; letter-spacing: 2px; text-transform: uppercase; padding-bottom: 6px; border-bottom: 1px solid #000; overflow: hidden; }
+  .h .n { float: right; border: 2px solid #000; border-radius: 10px; padding: 0 6px; font-size: 11px; letter-spacing: 0; line-height: 14px; }
+
+  /* MEETINGS */
+  .m { padding: 8px 0; border-bottom: 1px dashed #000; overflow: hidden; }
+  .m:last-child { border-bottom: none; }
+  .m .tm { font-size: 19px; font-weight: bold; line-height: 22px; }
+  .m .tm small { font-family: "Courier New", Courier, monospace; font-size: 11px; margin-left: 8px; letter-spacing: 1px; }
+  .m .ti { font-size: 14px; line-height: 18px; margin-top: 2px; }
+  .m .wh { font-family: "Courier New", Courier, monospace; font-size: 11px; line-height: 15px; margin-top: 2px; }
+  .m.now { background: #000; color: #fff; border-radius: 12px; padding: 9px 13px; margin: 10px 0 2px 0; border-bottom: none; }
+  .m.now .lbl { font-family: "Courier New", Courier, monospace; font-size: 10px; letter-spacing: 3px; font-weight: bold; }
+
+  /* TASKS */
+  .k { padding: 7px 0; border-bottom: 1px dashed #000; overflow: hidden; font-size: 13px; line-height: 17px; }
+  .k:last-child { border-bottom: none; }
+  .o { float: left; width: 10px; height: 10px; border: 2px solid #000; border-radius: 7px; margin-top: 1px; }
+  .o.x { background: #000; }
+  .kt { display: block; margin-left: 24px; }
+  .kt.x { text-decoration: line-through; }
+  .pill { font-family: "Courier New", Courier, monospace; font-size: 10px; font-weight: bold; border: 1px solid #000; border-radius: 8px; padding: 0 5px; margin-left: 4px; letter-spacing: 1px; }
+
+  /* QUOTE + FOOTER */
+  .q { position: absolute; left: 16px; right: 16px; top: 486px; height: 66px; border: 2px solid #000; border-radius: 14px; text-align: center; }
+  .q .qt { font-size: 18px; line-height: 24px; font-style: italic; padding-top: 10px; }
+  .q .qa { font-family: "Courier New", Courier, monospace; font-size: 10px; letter-spacing: 3px; text-transform: uppercase; margin-top: 5px; }
+
+  .ft { position: absolute; left: 16px; right: 16px; top: 572px; height: 16px; font-family: "Courier New", Courier, monospace; font-size: 10px; letter-spacing: 3px; text-align: center; text-transform: uppercase; }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="top">
+    <div class="t" id="time">9:41<small>AM</small></div>
+    <div class="d" id="date">Mon &middot; 28 Sep 2026</div>
+  </div>
+
+  <div class="cols">
+    <div class="col c1">
+      <div class="h">01 Meetings <span class="n">4</span></div>
+      <div class="m now">
+        <div class="lbl">UP NEXT</div>
+        <div class="tm">10:00<small>30 MIN</small></div>
+        <div class="ti">Daily Stand-up</div>
+        <div class="wh">Analytics Team / Video call</div>
+      </div>
+      <div class="m">
+        <div class="tm">12:00<small>60 MIN</small></div>
+        <div class="ti">Q3 Sales Report Review</div>
+        <div class="wh">Finance &amp; Ops / Room 4B</div>
+      </div>
+      <div class="m">
+        <div class="tm">14:30<small>45 MIN</small></div>
+        <div class="ti">Dashboard Requirements Sync</div>
+        <div class="wh">Product Team / Video call</div>
+      </div>
+      <div class="m">
+        <div class="tm">17:00<small>30 MIN</small></div>
+        <div class="ti">Weekly 1:1 with Manager</div>
+        <div class="wh">Cabin 2</div>
+      </div>
+    </div>
+
+    <div class="col c2">
+      <div class="h">02 Work <span class="n">2/6</span></div>
+      <div class="k"><span class="o x"></span><span class="kt x">Export weekly CSV</span></div>
+      <div class="k"><span class="o x"></span><span class="kt x">Reply to vendor email</span></div>
+      <div class="k"><span class="o"></span><span class="kt">Validate Q3 revenue figures <span class="pill">HIGH</span></span></div>
+      <div class="k"><span class="o"></span><span class="kt">Summarise churn report for leadership</span></div>
+      <div class="k"><span class="o"></span><span class="kt">Update KPI tracker sheet</span></div>
+      <div class="k"><span class="o"></span><span class="kt">Submit timesheet by Fri</span></div>
+    </div>
+
+    <div class="col c3">
+      <div class="h">03 Personal <span class="n">2/6</span></div>
+      <div class="k"><span class="o x"></span><span class="kt x">Morning walk, 30 min</span></div>
+      <div class="k"><span class="o x"></span><span class="kt x">Water the plants</span></div>
+      <div class="k"><span class="o"></span><span class="kt">Pick up groceries <span class="pill">EVE</span></span></div>
+      <div class="k"><span class="o"></span><span class="kt">Pay electricity bill</span></div>
+      <div class="k"><span class="o"></span><span class="kt">Call parents</span></div>
+      <div class="k"><span class="o"></span><span class="kt">Read 20 pages before bed</span></div>
+    </div>
+  </div>
+
+</div>
+
+<div class="q">
+  <div class="qt">&ldquo;Slow is smooth, and smooth is fast.&rdquo;</div>
+  <div class="qa">Proverb</div>
+</div>
+<div class="ft">Refreshes every 5 min &middot; updated <span id="upd">09:41</span></div>
+
+<script>
+  // Simple ES3-friendly script so the Kindle browser can show the live clock
+  (function () {
+    var days = ["Sun","Mon","Tue","Wed","Thu","Fri","Sat"];
+    var months = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
+    function pad(n) { return n < 10 ? "0" + n : "" + n; }
+    try {
+      var d = new Date();
+      var h = d.getHours();
+      var ap = h >= 12 ? "PM" : "AM";
+      var h12 = h % 12; if (h12 === 0) h12 = 12;
+      document.getElementById("time").innerHTML = h12 + ":" + pad(d.getMinutes()) + "<small>" + ap + "</small>";
+      document.getElementById("date").innerHTML = days[d.getDay()] + " &middot; " + d.getDate() + " " + months[d.getMonth()] + " " + d.getFullYear();
+      document.getElementById("upd").innerHTML = pad(h) + ":" + pad(d.getMinutes());
+    } catch (e) {}
+  })();
+</script>
+</body>
+</html>
